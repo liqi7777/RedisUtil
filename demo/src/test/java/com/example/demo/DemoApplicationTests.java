@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.DemoApplication;
 import com.example.util.RedisUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +38,7 @@ public class DemoApplicationTests {
         System.out.println(redisUtil.hExists("bhash", "b"));
         System.out.println(redisUtil.hValues("bhash"));
         System.out.println(redisUtil.expire("bhash", 2000, TimeUnit.SECONDS));
+
 
     }
 

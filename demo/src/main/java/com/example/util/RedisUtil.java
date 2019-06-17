@@ -196,6 +196,7 @@ public class RedisUtil {
 	 */
 	public void set(String key, String value) {
 		redisTemplate.opsForValue().set(key, value);
+
 	}
 
 	/**
