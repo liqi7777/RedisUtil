@@ -1,6 +1,8 @@
 package com.example.config;
 
+import cn.hutool.log.Log;
 import com.example.util.RedisUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -11,6 +13,9 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.listener.PatternTopic;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
+import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
@@ -242,6 +247,45 @@ public class RedisConfig {
         RedisUtil redisUtil = new RedisUtil();
         redisUtil.setRedisTemplate(redisTemplate);
         return redisUtil;
+    }
+
+
+    /**
+     * redis消息监听器容器
+     * 可以添加多个监听不同话题的redis监听器，只需要把消息监听器和相应的消息订阅处理器绑定，该消息监听器
+     * 通过反射技术调用消息订阅处理器的相关方法进行一些业务处理
+     *
+     * @param connectionFactory
+     * @param listenerAdapter
+     * @return
+     */
+    @Bean
+    //相当于xml中的bean
+    RedisMessageListenerContainer container(@Qualifier("JedisConnectionFactory") RedisConnectionFactory connectionFactory,
+                                            @Qualifier("listenerAdapter") MessageListenerAdapter listenerAdapter) {
+
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        //订阅了一个叫chat 的通道
+        container.addMessageListener(listenerAdapter, new PatternTopic("mytopic"));
+        //这个container 可以添加多个 messageListener
+        return container;
+    }
+
+    /**
+     * 绑定消息监听者和接收监听的方法,必须要注入这个监听器，不然会报错
+     */
+    @Bean(name = "listenerAdapter")
+    public MessageListenerAdapter listenerAdapter() {
+        MessageListenerAdapter messageListenerAdapter = new MessageListenerAdapter(new Receiver(), "receiveMessage");
+        return messageListenerAdapter;
+    }
+
+
+    class Receiver {
+        public void receiveMessage(String message) {
+            System.out.println("Received <" + message + ">");
+        }
     }
 
 

@@ -18,6 +18,7 @@ public class MyWebConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new RequestInterceptor()).addPathPatterns("/wrapper/request");
+        registry.addInterceptor(new AuthenticationInterceptor()).addPathPatterns("/jwt/verifyToken");
         super.addInterceptors(registry);
     }
 
