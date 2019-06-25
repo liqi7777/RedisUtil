@@ -1,7 +1,11 @@
 package com.example.demo;
 
 import com.example.demo.DemoApplication;
+import com.example.testbenaoftype.TrafficCode;
+import com.example.testbenaoftype.TrafficMode;
+import com.example.testbenaoftype.TrafficModeFactory;
 import com.example.util.RedisUtil;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +43,20 @@ public class DemoApplicationTests {
         System.out.println(redisUtil.hValues("bhash"));
         System.out.println(redisUtil.expire("bhash", 2000, TimeUnit.SECONDS));
 
-
     }
 
+    @Test
+    public void testGetTrafficMode() throws Exception {
+        TrafficMode mode = TrafficModeFactory.getTrafficMode(TrafficCode.BUS);
+        Assert.assertEquals(mode.getFee().intValue(), 10000);
+
+        mode = TrafficModeFactory.getTrafficMode(TrafficCode.TRAIN);
+        Assert.assertEquals(mode.getFee().intValue(), 9000);
+    }
+
+
+    @Test
+    public void testRedisQueueListener() throws Exception {
+
+    }
 }

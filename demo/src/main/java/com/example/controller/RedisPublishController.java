@@ -29,4 +29,13 @@ public class RedisPublishController {
         }
         return "结束";
     }
+
+    @RequestMapping(value = "testRedisQueueListener", method = {RequestMethod.POST, RequestMethod.GET})
+    public String testRedisQueueListener(){
+        int index = 0;
+        for (int i = 0; i < 10; i++) {
+            template.opsForList().leftPush("consumeQueue_test",String.valueOf(i));
+        }
+        return "结束";
+    }
 }

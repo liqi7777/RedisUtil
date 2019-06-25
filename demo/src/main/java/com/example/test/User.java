@@ -44,11 +44,13 @@ public class User implements  Cloneable{
         this.money = money;
     }
 
+
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
                 ", money=" + money +
+                ", bigDecimal=" + bigDecimal +
                 '}';
     }
 }
