@@ -26,9 +26,9 @@ public class BeanCopierTest {
 //        BeanCopier.create(User.class, User.class, false).copy(source, target, null);
         BeanUtil.copyProperties(source,target,new CopyOptions().setIgnoreNullValue(true));
         System.out.println(target);
-        System.out.println(LocalDateTime.now());
-        System.out.println(LocalDate.now());
-        System.out.println(LocalTime.now());
-        System.out.println(LocalDateTime.of(LocalDate.now(),LocalTime.now()));
+//        System.out.println(LocalDateTime.now());
+//        System.out.println(LocalDate.now());
+//        System.out.println(LocalTime.now());
+//        System.out.println(LocalDateTime.of(LocalDate.now(),LocalTime.now()));
     }
 }

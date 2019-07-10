@@ -25,6 +25,6 @@ public class JwtDemoController {
     @UserLoginToken
     public String verifyToken(@RequestHeader("token") String token) {
         System.out.println("haha");
-        return "success";
+        return  "success";
     }
 }

@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
+import javax.swing.text.html.Option;
 import java.io.File;
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
@@ -30,19 +31,10 @@ import java.util.function.DoubleToIntFunction;
 
 public class test01 {
     public static void main(String[] args) {
-        try {
-            User target = new User();
-            target.setUsername("liqi");
-//            target.setMoney(20);
-            target.setBigDecimal(new BigDecimal("20"));
-            User source = new User();
-            source.setUsername("zhangsan");
-            BeanCopier.create(User.class,User.class,false).copy(source,target,null);
-            System.out.println(target);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("hhehehe");
-        }
+//        System.out.println(Optional.of(null));
+        Double d1=1.50;
+        Double d2=1.5;
+        System.out.println(d1.equals(d2));
     }
 
     private static int sayhello() throws Exception {
