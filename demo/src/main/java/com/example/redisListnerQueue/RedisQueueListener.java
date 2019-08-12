@@ -24,9 +24,9 @@ public class RedisQueueListener implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("xiangmuqidong");
-        while (true) {
-            String consumeQueue_test = stringRedisTemplate.opsForList().rightPop("consumeQueue_test", 0, TimeUnit.SECONDS);
-            System.out.println("redis事件队列监听，结果：" + consumeQueue_test);
-        }
+//        while (true) {
+//            String consumeQueue_test = stringRedisTemplate.opsForList().rightPop("consumeQueue_test", 0, TimeUnit.SECONDS);
+//            System.out.println("redis事件队列监听，结果：" + consumeQueue_test);
+//        }
     }
 }

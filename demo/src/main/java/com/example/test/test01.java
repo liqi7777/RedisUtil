@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.function.DoubleToIntFunction;
+import java.util.stream.Collectors;
 
 /**
  * @author Sky
@@ -32,9 +33,30 @@ import java.util.function.DoubleToIntFunction;
 public class test01 {
     public static void main(String[] args) {
 //        System.out.println(Optional.of(null));
-        Double d1=1.50;
-        Double d2=1.5;
-        System.out.println(d1.equals(d2));
+//        BigDecimal currentReading = new BigDecimal("00017326").divide(BigDecimal.valueOf(100), 2, BigDecimal.ROUND_HALF_UP);
+//        System.out.println();
+//        System.out.println(currentReading);
+        String data="8.00m³";
+        if (StringUtils.isNotBlank(data) && data.contains("m³")){
+            String s = data.split("m³")[0];
+            System.out.println(s);
+        }
+        System.out.println(java.util.UUID.randomUUID().toString().replaceAll("-", ""));
+
+        List<Integer> userids01=new ArrayList<>();
+        userids01.add(6);
+        List<Integer> userids02=new ArrayList<>();
+        userids02.add(1);
+        userids02.add(2);
+        userids02.addAll(userids01);
+//        userids01.addAll(userids02);
+        System.out.println(userids02);
+
+        List<Integer> list = Arrays.asList(1,2,3,4);
+        Double result = list.stream().collect(Collectors.collectingAndThen(Collectors.averagingLong(v->v*2),
+                s-> s*s));
+        System.out.println(result);
+
     }
 
     private static int sayhello() throws Exception {

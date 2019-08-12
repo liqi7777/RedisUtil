@@ -40,3 +40,6 @@ mybatis-plus:
         cache-enabled: false
         #\u914D\u7F6EJdbcTypeForNull
         jdbc-type-for-null: 'null'
+logging:
+  level:
+    com.example.mapper: debug

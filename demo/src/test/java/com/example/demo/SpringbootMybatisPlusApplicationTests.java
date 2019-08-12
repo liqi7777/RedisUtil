@@ -1,7 +1,9 @@
 package com.example.demo;
 
+import com.example.mapper.SysUserMapper;
 import com.example.model.SysUser;
 import com.example.service.SysUserService;
+import org.apache.ibatis.session.RowBounds;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,14 @@ public class SpringbootMybatisPlusApplicationTests {
     @Autowired
     private SysUserService userService;
 
+
     @Test
     public void contextLoads() {
 
         // 所有用户
         List<SysUser> users = userService.selectList(null);
         System.out.println(users);
+
 
     }
 
