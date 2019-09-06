@@ -16,14 +16,7 @@ import java.security.SecureRandom;
 public class AESTest {
 
     public static void main(String[] args) {
-        int x,p,i,s=0;
-        for(x=1;x<5;x++){
-            for(p=i=1;i<=x;i++){
-                p*=x;
-            }
-            s+=p;
-        }
-        System.out.println(s);
+        getKeyByPass();
     }
 
     /**
@@ -51,7 +44,7 @@ public class AESTest {
      */
     public static void getKeyByPass() {
         //生成秘钥
-        String password = "testkey";
+        String password = "ant";
         try {
             KeyGenerator kg = KeyGenerator.getInstance("AES");
             // kg.init(128);//要生成多少位，只需要修改这里即可128, 192或256

@@ -1,6 +1,8 @@
 package com.example.test;
 
 
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.commons.lang3.StringUtils;
@@ -40,14 +42,28 @@ public class RedisTest {
 //
 //        apartmentListVos.stream().collect(Collectors.toMap(ApartmentListVo::getApartmentId, apartmentListVo -> apartmentListVo));
 
-        SimpleDateFormat sdf=new SimpleDateFormat("yyMMddHHmmssSSS");
-        String newDate=sdf.format(new Date());
-        String result="";
-        Random random=new Random();
-        for(int i=0;i<3;i++){
-            result+=random.nextInt(10);
-        }
-        System.out.println(newDate+result);
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmssSSS");
+//        String newDate = sdf.format(new Date());
+//        String result = "";
+//        Random random = new Random();
+//        for (int i = 0; i < 3; i++) {
+//            result += random.nextInt(10);
+//        }
+//        System.out.println(newDate + result);
+//
+//
+//        DateTime dateTime = DateUtil.parseDateTime("2019-08-29 15:23:43");
+//        System.out.println(dateTime.getTime());
+//
+//        StringBuilder builder = new StringBuilder("hah");
+//        String s =null;
+//        builder.append(s!=null?s:"");
+//        System.out.println(builder.toString());
+//
+//        Integer i=3;
+//        System.out.println(i.equals(3));
+
+        System.out.println("   ".equals(""));
 
     }
 }

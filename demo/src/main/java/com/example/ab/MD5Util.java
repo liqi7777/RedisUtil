@@ -94,6 +94,7 @@ public class MD5Util {
         MessageDigest md = MessageDigest.getInstance("MD5");
 
         md.update(password.getBytes());
+        System.out.println( md.digest());
 
         return new BigInteger(1, md.digest()).toString(16);
     }
@@ -132,26 +133,31 @@ public class MD5Util {
      * @param args 说明：
      */
     public static void main(String[] args) throws NoSuchAlgorithmException {
-        String aa = "";
-        String aaa = String.valueOf("1" + System.nanoTime()) + Math.ceil(Math.random() * 9 + 1) * 10000;
-        aa = md5T16();
-        String bb = md5(aaa).substring(8, 24);
-        System.out.println(aa);
-        System.out.println(bb);
-        System.out.println("1"
-                + ((new SimpleDateFormat("yyyyMMddHHmm")).format(new Date())
-                + Math.ceil((Math.random() * 9 + 1) * 100)));
+//        String aa = "";
+//        String aaa = String.valueOf("1" + System.nanoTime()) + Math.ceil(Math.random() * 9 + 1) * 10000;
+//        aa = md5T16();
+//        String bb = md5(aaa).substring(8, 24);
+//        System.out.println(aa);
+//        System.out.println(bb);
+//        System.out.println("1"
+//                + ((new SimpleDateFormat("yyyyMMddHHmm")).format(new Date())
+//                + Math.ceil((Math.random() * 9 + 1) * 100)));
+//
+//        System.out.println(String.valueOf(System.nanoTime()) + "|" + aa);
+//
+//        try {
+//            System.out.println(md5("zhangdi", "zhangdi"));
+//        } catch (NoSuchAlgorithmException e) {
+//
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
 
-        System.out.println(String.valueOf(System.nanoTime()) + "|" + aa);
 
-        try {
-            System.out.println(md5("zhangdi", "zhangdi"));
-        } catch (NoSuchAlgorithmException e) {
+        System.out.println(md5("hello"));
+        System.out.println(MD5Encode("hello"));
 
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
+        
 
     }
 }
