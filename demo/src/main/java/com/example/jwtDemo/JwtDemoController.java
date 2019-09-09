@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Sky
  * create 2019/06/17
  * email sky.li@ixiaoshuidi.com
+ * @index 2
  **/
 @RestController
 @RequestMapping("jwt")

@@ -7,6 +7,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.retry.annotation.EnableRetry;
 
+/**
+ * @readme 本项目的所有接口采用json 协议，为运营平台提供后台接口。
+ */
 @SpringBootApplication
 @ComponentScan("com.example")
 @EnableRetry
