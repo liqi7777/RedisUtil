@@ -77,7 +77,6 @@
         </dependency>
 
 
-
         <!--apach commons-->
         <dependency>
             <groupId>commons-codec</groupId>
@@ -203,6 +202,12 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
         </dependency>
+        <!--google guava-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
+        </dependency>
 
     </dependencies>
 
@@ -212,6 +217,28 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+
+            <plugin>
+                <groupId>com.github.apiggs</groupId>
+                <artifactId>apiggs-maven-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>apiggs</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- options in there -->
+                    <id>demo</id>
+                    <description>demo文档</description>
+                    <dependency>../demo/src/main/java</dependency>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 

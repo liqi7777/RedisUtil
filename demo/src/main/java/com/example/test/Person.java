@@ -9,7 +9,7 @@ import javax.annotation.sql.DataSourceDefinition;
  * create 2018/10/17
  * email sky.li@ixiaoshuidi.com
  **/
-public class Person {
+public class Person implements Cloneable {
     private int id;
 
     private String name;
@@ -19,8 +19,10 @@ public class Person {
         this.name = name;
     }
 
-
-
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 
     public int getId() {
         return id;
