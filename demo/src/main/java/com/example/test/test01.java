@@ -1,5 +1,6 @@
 package com.example.test;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.text.csv.CsvUtil;
 import cn.hutool.core.text.csv.CsvWriter;
@@ -11,6 +12,7 @@ import net.sf.cglib.beans.BeanCopier;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.hibernate.validator.constraints.ModCheck;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +54,6 @@ public class test01 {
         userids02.addAll(userids01);
 //        userids01.addAll(userids02);
         System.out.println(userids02);
-
         List<Integer> list = Arrays.asList(1, 2, 3, 4);
         Double result = list.stream().collect(Collectors.collectingAndThen(Collectors.averagingLong(v -> v * 2),
                 s -> s * s));
@@ -63,6 +64,10 @@ public class test01 {
         System.out.println(format);
         String format1 = DateFormatUtils.format(date, "yyyy-MM-dd 23:59:59");
         System.out.println(format1);
+
+        Date date1 = DateUtils.addMonths(new Date(), -1);
+        System.out.println(date1);
+
 
     }
 
