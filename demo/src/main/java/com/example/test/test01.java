@@ -68,6 +68,9 @@ public class test01 {
         Date date1 = DateUtils.addMonths(new Date(), -1);
         System.out.println(date1);
 
+        Long l=30_000L;
+        System.out.println(l);
+
 
     }
 
