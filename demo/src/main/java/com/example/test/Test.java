@@ -1,8 +1,12 @@
 package com.example.test;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import cn.hutool.core.date.DateUtil;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * @author Sky
@@ -10,7 +14,7 @@ import java.util.Map;
  * email sky.li@ixiaoshuidi.com
  **/
 public class Test {
-    public static class Inner{
+    public static class Inner {
 
         public final static Test testInstance = new Test(3);
 
@@ -19,12 +23,12 @@ public class Test {
         }
     }
 
-    public static Test getInstance(){
+    public static Test getInstance() {
         return Inner.testInstance;
     }
 
-    public Test(int i ) {
-        System.out.println("Test " + i +" Construct! ");
+    public Test(int i) {
+        System.out.println("Test " + i + " Construct! ");
     }
 
     static {
@@ -33,11 +37,9 @@ public class Test {
 
     public static Test testOut = new Test(1);
 
-    public static void main(String args[]){
-        Person p =new Person(1,"liqi");
+    public static void main(String args[]) throws InterruptedException {
 
-        Map<String,Object> map=new HashMap<>();
-        map.put("a",p);
-        System.out.println((Person)map.get("a"));
+        List<String> list = null;
+        Optional.ofNullable(list).get();
     }
 }
