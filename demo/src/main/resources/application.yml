@@ -8,6 +8,8 @@ spring:
         url: jdbc:mysql://127.0.0.1:3306/freeter?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
         username: root
         password: root
+    thymeleaf:
+      cache: false
 
 
 mybatis-plus:

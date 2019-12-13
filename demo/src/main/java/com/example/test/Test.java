@@ -1,6 +1,8 @@
 package com.example.test;
 
 import cn.hutool.core.date.DateUtil;
+import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.codec.Charsets;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +41,5 @@ public class Test {
 
     public static void main(String args[]) throws InterruptedException {
 
-        List<String> list = null;
-        Optional.ofNullable(list).get();
     }
 }
