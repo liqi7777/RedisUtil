@@ -40,6 +40,7 @@ public class Test {
     public static Test testOut = new Test(1);
 
     public static void main(String args[]) throws InterruptedException {
+        System.out.println(Arrays.asList(1, 2, 3).toString());
 
     }
 }
