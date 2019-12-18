@@ -1,5 +1,7 @@
 package com.example.fileuploadanddownload;
 
+import com.alibaba.fastjson.JSONObject;
+import com.example.test.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,7 +36,8 @@ public class FileUploadController {
      */
     @RequestMapping("fileUpload")
     @ResponseBody
-    public String fileUpload(@RequestParam("fileName") MultipartFile file) {
+    public String fileUpload(@RequestParam("fileName") MultipartFile file,@RequestParam("id") int id) {
+        System.out.println(id);
         if (file.isEmpty()) {
             return "false";
         }

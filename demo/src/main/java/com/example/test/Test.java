@@ -40,7 +40,9 @@ public class Test {
     public static Test testOut = new Test(1);
 
     public static void main(String args[]) throws InterruptedException {
-        System.out.println(Arrays.asList(1, 2, 3).toString());
-
+//        System.out.println(Arrays.asList(1, 2, 3).toString());
+        System.out.println(JSONObject.toJSONString(Arrays.asList(1,2,3)));
+        Date date = new Date(1576490076000L);
+        System.out.println(DateUtil.formatDateTime(date));
     }
 }
