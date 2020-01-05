@@ -238,6 +238,12 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
+        <!--springboot整合webservice所需要jar包-->
+         <dependency>
+             <groupId>org.apache.cxf</groupId>
+             <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+             <version>3.2.4</version>
+         </dependency>
     </dependencies>
 
     <build>
