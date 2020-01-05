@@ -176,7 +176,7 @@ public class QRCodeUtil {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        String text = "http://localhost:8001/login/aaa?bbb=ccc";
+        String text = "liqi";
         //不含Logo
         QRCodeUtil.encode(text, null, "D:\\cc\\", "qrcode", true);
         //含Logo，指定二维码图片名
