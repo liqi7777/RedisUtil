@@ -3,6 +3,7 @@ package com.example.demo;
 import com.example.applicationListener.MyEvent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.retry.annotation.EnableRetry;
@@ -13,6 +14,8 @@ import org.springframework.retry.annotation.EnableRetry;
 @SpringBootApplication
 @ComponentScan("com.example")
 @EnableRetry
+//开启基于注解的缓存
+@EnableCaching
 public class DemoApplication {
 
 	public static void main(String[] args) {

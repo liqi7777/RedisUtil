@@ -1,4 +1,4 @@
-package com.example.guavatest;
+package com.example.googleguavatest;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
