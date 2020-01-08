@@ -17,7 +17,7 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext applicationContext = SpringApplication.run(DemoApplication.class, args);
-		applicationContext.publishEvent(new MyEvent("测试事件"));
+//		applicationContext.publishEvent(new MyEvent("测试事件"));
 	}
 
 }
