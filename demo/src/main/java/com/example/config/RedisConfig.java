@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -20,6 +24,13 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
+
+import java.lang.reflect.Method;
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Sky
@@ -249,6 +260,80 @@ public class RedisConfig {
         RedisUtil redisUtil = new RedisUtil();
         redisUtil.setRedisTemplate(redisTemplate);
         return redisUtil;
+    }
+
+
+    /**
+     * (cache-redis缓存) redis缓存管理器
+     *
+     * @param redisTemplate
+     * @return
+     */
+    @Bean
+    public CacheManager cacheManager(@Qualifier("stringRedisTemplate") StringRedisTemplate redisTemplate) {
+        RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate);
+        //配置CacheManneg来配置默认的过期时间和针对每个缓存容器（value）
+        redisCacheManager.setDefaultExpiration(120);
+//        Map<String, Long> expiresMap = new HashMap<>();
+//        expiresMap.put("Product", 5L);
+//        redisCacheManager.setExpires(expiresMap);
+        return redisCacheManager;
+
+        /*  =================   springboot2.0 集成方式:  =========================  */
+        // 生成一个默认配置，通过config对象即可对缓存进行自定义配置
+//        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
+//        // 设置缓存的默认过期时间，也是使用Duration设置
+//        config = config.entryTtl(Duration.ofMinutes(1))
+//                // 设置 key为string序列化
+//                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
+//                // 设置value为json序列化
+//                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jackson2JsonRedisSerializer()))
+//                // 不缓存空值
+//                .disableCachingNullValues();
+//
+//        // 设置一个初始化的缓存空间set集合
+//        Set<String> cacheNames = new HashSet<>();
+//        cacheNames.add("timeGroup");
+//        cacheNames.add("user");
+//
+//        // 对每个缓存空间应用不同的配置
+//        Map<String, RedisCacheConfiguration> configMap = new HashMap<>();
+//        configMap.put("timeGroup", config);
+//        configMap.put("user", config.entryTtl(Duration.ofSeconds(120)));
+//
+//        // 使用自定义的缓存配置初始化一个cacheManager
+//        RedisCacheManager cacheManager = RedisCacheManager.builder(redisConnectionFactory)
+//                // 一定要先调用该方法设置初始化的缓存名，再初始化相关的配置
+//                .initialCacheNames(cacheNames)
+//                .withInitialCacheConfigurations(configMap)
+//                .build();
+//        return cacheManager;
+    }
+
+
+    /**
+     * (cache-redis缓存) key值为className+methodName+参数值列表
+     *
+     * @return
+     */
+    @Bean("mykeyGenerator")
+    public KeyGenerator keyGenerator() {
+        return new KeyGenerator() {
+            @Override
+            public Object generate(Object o, Method method, Object... args) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(o.getClass().getName()).append("#");
+                sb.append(method.getName()).append("(");
+                for (Object obj : args) {
+                    if (obj != null) { // 在可选参数未给出时时，会出现null，此时需要跳过
+                        sb.append(obj.toString()).append(",");
+                    }
+                }
+                sb.deleteCharAt(sb.length() - 1);
+                sb.append(")");
+                return sb.toString();
+            }
+        };
     }
 
 
