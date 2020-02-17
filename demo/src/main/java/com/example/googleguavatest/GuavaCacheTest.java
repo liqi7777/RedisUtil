@@ -4,6 +4,8 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -24,7 +26,7 @@ public class GuavaCacheTest {
                 .maximumSize(100)
                 //是否需要统计缓存情况,该操作消耗一定的性能,生产环境应该去除
                 .recordStats()
-                //设置写缓存后n秒钟过期
+                //设置写缓存后n秒钟后过期
                 .expireAfterWrite(17, TimeUnit.SECONDS)
                 //设置读写缓存后n秒钟过期,实际很少用到,类似于expireAfterWrite
                 //.expireAfterAccess(17, TimeUnit.SECONDS)
@@ -38,6 +40,34 @@ public class GuavaCacheTest {
                 .build(new DemoCacheLoader());
 
 
+        //模拟线程并发
+        new Thread(() -> {
+            //非线程安全的时间格式化工具
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+            try {
+                for (int i = 0; i < 15; i++) {
+                    String value = cache.get(1);
+                    System.out.println(Thread.currentThread().getName() + " " + simpleDateFormat.format(new Date()) + " " + value);
+                    TimeUnit.SECONDS.sleep(3);
+                }
+            } catch (Exception ignored) {
+            }
+        }).start();
+
+        new Thread(() -> {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+            try {
+                for (int i = 0; i < 10; i++) {
+                    String value = cache.get(1);
+                    System.out.println(Thread.currentThread().getName() + " " + simpleDateFormat.format(new Date()) + " " + value);
+                    TimeUnit.SECONDS.sleep(5);
+                }
+            } catch (Exception ignored) {
+            }
+        }).start();
+
+        //缓存状态查看
+        System.out.println(cache.stats().toString());
     }
 
 

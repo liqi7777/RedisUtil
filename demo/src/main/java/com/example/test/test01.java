@@ -74,16 +74,36 @@ public class test01 {
 //
 //        System.out.println("8737b92b0b9e68a07bcd1f895637df4a".length());
 
-        String encodeString = "李";
-        try {
-            byte[] bytes = encodeString.getBytes("utf-8");
-            for (byte aByte : bytes) {
-                System.out.println(aByte);
-            }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        
+//        String encodeString = "李";
+//        try {
+//            byte[] bytes = encodeString.getBytes("utf-8");
+//            for (byte aByte : bytes) {
+//                System.out.println(aByte);
+//            }
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+
+
+       String  htjsonstr = "{\n" +
+                "        \"khh\":\"江苏银行\",\n" +
+                "        \"jzyhzh\":\"18320188000337289\",\n" +
+                "        \"fkzq\":3,\n" +
+                "        \"htqdsj\":\"2020-01-09\",\n" +
+                "        \"zljzsj\":\"2020-02-08\",\n" +
+                "        \"fwcode\":\"413700\",\n" +
+                "        \"qyhtbh\":\"ZKZLHT202001090004\",\n" +
+                "        \"fkfs\":3,\n" +
+                "        \"zjje\":1000,\n" +
+                "        \"jzfs\":2,\n" +
+                "        \"zzjje\":1000,\n" +
+                "        \"yjje\":1000,\n" +
+                "        \"htqddd\":\"杭州拱墅和睦西湖路1号\",\n" +
+                "        \"zlqssj\":\"2020-01-09\"\n" +
+                "    }";
+        JSONObject jsonObject = JSONObject.parseObject(htjsonstr);
+        System.out.println(jsonObject.toJSONString());
+
     }
 
     private static int sayhello() throws Exception {

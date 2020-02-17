@@ -44,5 +44,13 @@ public class Test {
         System.out.println(JSONObject.toJSONString(Arrays.asList(1,2,3)));
         Date date = new Date(1576490076000L);
         System.out.println(DateUtil.formatDateTime(date));
+
+
+        String i="2" ;
+        switch (i){
+            case "1":
+            case "2":
+                System.out.println("hehe");
+        }
     }
 }
