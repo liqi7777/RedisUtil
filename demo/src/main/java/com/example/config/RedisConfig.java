@@ -274,9 +274,9 @@ public class RedisConfig {
         RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate);
         //配置CacheManneg来配置默认的过期时间和针对每个缓存容器（value）
         redisCacheManager.setDefaultExpiration(120);
-//        Map<String, Long> expiresMap = new HashMap<>();
-//        expiresMap.put("Product", 5L);
-//        redisCacheManager.setExpires(expiresMap);
+        Map<String, Long> expiresMap = new HashMap<>();
+        expiresMap.put("userCache", 60L);
+        redisCacheManager.setExpires(expiresMap);
         return redisCacheManager;
 
         /*  =================   springboot2.0 集成方式:  =========================  */
