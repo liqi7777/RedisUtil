@@ -239,13 +239,29 @@
         </dependency>
 
         <!--springboot整合webservice所需要jar包-->
-         <dependency>
-             <groupId>org.apache.cxf</groupId>
-             <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
-             <version>3.2.4</version>
-         </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+            <version>3.2.4</version>
+        </dependency>
+
+        <!--https://github.com/yinjihuan/monkey-api-encrypt.git 数据加密-->
+        <dependency>
+            <groupId>com.github.yinjihuan</groupId>
+            <artifactId>monkey-api-encrypt</artifactId>
+            <version>1.1.13</version>
+        </dependency>
 
     </dependencies>
+
+    <!--monkey-api-encrypt 远程仓库-->
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
 
     <build>
         <plugins>

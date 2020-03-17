@@ -10,6 +10,8 @@ spring:
         password: root
     thymeleaf:
       cache: false
+    profiles:
+      include: monkeyapiencrypt  #统一加解密配置
 
 
 mybatis-plus:

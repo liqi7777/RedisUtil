@@ -19,11 +19,13 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class User implements Cloneable {
     private String username;
-    private int money;
+    private Integer money;
     private BigDecimal bigDecimal;
 
 
-
+    public void incrMoney() {
+        ++money;
+    }
 
 
     @Override
