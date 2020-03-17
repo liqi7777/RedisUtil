@@ -1,7 +1,10 @@
 package com.example.util;
 
 import lombok.Data;
+import sun.applet.Main;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -59,9 +62,15 @@ public class PageBean<T> {
         PageBean<T> pageBean = new PageBean<>(totalList, pageNum, pageSize);
         int startPage = (pageNum - 1) * pageSize;
         int endPage = startPage + pageSize;
-        pageBean.setList(totalList.subList(startPage, endPage > pageBean.getTotal() ? pageBean.getTotal() : endPage));
+        pageBean.setList(new ArrayList<>(totalList.subList(startPage, endPage > pageBean.getTotal() ? pageBean.getTotal() : endPage)));
         return pageBean;
     }
 
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList("a", "b", "c");
+        System.out.println(list);
+        PageBean<String> pageBean = generatePageBean(list, 1, 3);
+        System.out.println(pageBean.getList());
+    }
 
 }

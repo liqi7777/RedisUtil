@@ -34,10 +34,10 @@ public class test01 {
 //
 //        DateTime yesterday = DateUtil.yesterday();
 //        DateUtil.now();
-//        DateTime yyyyMM = DateUtil.parse("201902", "yyyyMM");
-//        DateTime dateTime = DateUtil.beginOfMonth(yyyyMM);
-//        DateTime dateTime1 = DateUtil.endOfMonth(yyyyMM);
-//        System.out.println(dateTime.toString());
+        DateTime yyyyMM = DateUtil.parse("201902", "yyyyMM");
+        DateTime dateTime = DateUtil.beginOfMonth(yyyyMM);
+        DateTime dateTime1 = DateUtil.endOfMonth(yyyyMM);
+        System.out.println(dateTime.toString());
 //        System.out.println(dateTime1.toString());
 //        System.out.println(yyyyMM.getTime());
 //        long between = DateUtil.between(dateTime, dateTime1, DateUnit.SECOND);

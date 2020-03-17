@@ -13,10 +13,10 @@ public class CompletionServiceTest  {
 
     public static void main(String[] args) {
         //同步执行多个任务，一个个提交任务 并且主线程在等待执行结果
-//        method1();
+        method1();
 
-        //同步执行多个任务，一次性提交多个任务，并且主线程同步等待这些任务
-        method2();
+        //同步执行多个任务，一次性提交多个任务，并待且主线程同步等这些任务
+//        method2();
 
 
 

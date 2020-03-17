@@ -20,9 +20,9 @@ public class DataUtil {
         List<String> nlist = new ArrayList<>();
         Calendar c = Calendar.getInstance();
         //2019-02-21 17:09:33  2020-02-21 17:09:33
-        c.setTime(DateUtil.parseDate("2019-02-01 00:00:00").toJdkDate());
+        c.setTime(DateUtil.parseDate("2020-02-01 00:00:00").toJdkDate());
         Calendar c2 = Calendar.getInstance();
-        c2.setTime(DateUtil.parseDate("2020-02-28 23:59:59").toJdkDate());
+        c2.setTime(DateUtil.parseDate("2020-02-01 00:00:00").toJdkDate());
 //            int num1 = Integer.parseInt(performance.getStartDate().substring(5,7));
 //            int num2 = Integer.parseInt(performance.getEndDate().substring(5,7));
         while (c.before(c2)) {
