@@ -5,9 +5,12 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.example.util.PageBean;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.redis.core.types.Expiration;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Sky
@@ -75,6 +78,10 @@ public class test01 {
         String stackTrace = Thread.currentThread().getStackTrace()[1].getMethodName();
 
         System.out.println(Thread.currentThread().getStackTrace());
+
+        System.out.println(Expiration.from(5L, TimeUnit.SECONDS).getExpirationTimeInMilliseconds());
+
+        System.out.println(StringUtils.isBlank(""));
     }
 
     private static int sayhello() throws Exception {
