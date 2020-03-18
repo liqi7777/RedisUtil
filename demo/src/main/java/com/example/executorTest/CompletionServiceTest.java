@@ -9,18 +9,34 @@ import java.util.concurrent.*;
  * create 2020/02/15
  * email sky.li@ixiaoshuidi.com
  **/
-public class CompletionServiceTest  {
+public class CompletionServiceTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         //同步执行多个任务，一个个提交任务 并且主线程在等待执行结果
-        method1();
+//        method1();
 
         //同步执行多个任务，一次性提交多个任务，并待且主线程同步等这些任务
 //        method2();
 
 
+        method3();
 
 
+    }
+
+    private static void method3() throws ExecutionException, InterruptedException {
+        ExecutorService executeService = Executors.newCachedThreadPool();
+        Future<String> helloFuture = executeService.submit(() -> {
+            try {
+                Thread.sleep(10 * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "hello";
+        });
+        String s = helloFuture.get();
+        System.out.println(s);
+        System.out.println("是否等待完成");
     }
 
     private static void method2() {
@@ -28,7 +44,7 @@ public class CompletionServiceTest  {
         ExecutorService executeService = Executors.newCachedThreadPool();
         List<CallableDemo> taskList = new ArrayList<CallableDemo>();
         long startTime = System.currentTimeMillis();
-        for (int i = 0;i < 10;i ++) {
+        for (int i = 0; i < 10; i++) {
             taskList.add(new CallableDemo("micro" + i, 10));
         }
         try {
@@ -54,8 +70,8 @@ public class CompletionServiceTest  {
         // 十个
         long startTime = System.currentTimeMillis();
         int count = 0;
-        for (int i = 0;i < 10;i ++) {
-            count ++;
+        for (int i = 0; i < 10; i++) {
+            count++;
             CallableDemo callableDemo = new CallableDemo("micro" + i, 10);
             completionService.submit(callableDemo);
         }
@@ -69,13 +85,13 @@ public class CompletionServiceTest  {
         }
         try {
             // 做完事情要结果
-            for (int i = 0;i < count;i ++) {
+            for (int i = 0; i < count; i++) {
                 Future<String> result = completionService.take();
                 System.out.println(result.get());
             }
             long endTime = System.currentTimeMillis();
             System.out.println("耗时 : " + (endTime - startTime) / 1000);
-        }  catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }

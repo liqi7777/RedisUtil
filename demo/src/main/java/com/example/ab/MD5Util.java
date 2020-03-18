@@ -155,7 +155,7 @@ public class MD5Util {
 
 
         System.out.println(md5("hello"));
-        System.out.println(MD5Encode("hello"));
+//        System.out.println(MD5Encode("hello"));
 
         
 
