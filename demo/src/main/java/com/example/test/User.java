@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import net.bytebuddy.asm.Advice;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
 
 /**
@@ -17,6 +21,7 @@ import java.math.BigDecimal;
 @Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@XmlRootElement
 public class User implements Cloneable {
     private String username;
     private Integer money;
