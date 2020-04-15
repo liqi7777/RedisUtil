@@ -1,12 +1,15 @@
 package com.example.webservice.JAXBXmlBeanTest;
 
 import cn.hutool.core.util.XmlUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.example.webservice.JAXBXmlBeanTest.model.*;
 import org.apache.commons.lang3.CharSet;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -57,12 +60,13 @@ public class TestRootBase {
         System.out.println("=============================================================");
 
         List<Friend> friends=new ArrayList<>();
-        Friend friend01=new Friend(20);
-        Friend friend02 = new Friend(30);
+        Friend friend01=new Friend(30);
+        Friend friend02 = new Friend(20);
         friends.add(friend01);
         friends.add(friend02);
         InspecMMe inspecMMe = new InspecMMe("liqi", "男", friends);
-        Root argsRoot = new ArgsRoot(inspecMMe);
+        ArgsRoot argsRoot = new ArgsRoot(inspecMMe);
+        argsRoot.setName("hello");
         Base base02 = new Base(argsRoot);
         JAXBContext context02 = JAXBContext.newInstance(base02.getClass());
         Marshaller marshaller02 = context02.createMarshaller();
@@ -75,6 +79,11 @@ public class TestRootBase {
         marshaller02.marshal(base02, writer02);
         String outString02 = writer02.toString();
         System.out.println(outString02);
+
+        Unmarshaller unmarshaller = context02.createUnmarshaller();
+        Base unmarshal = (Base) unmarshaller.unmarshal(new StringReader(outString02));
+        System.out.println(JSONObject.toJSONString(unmarshal));
+
 
     }
 }

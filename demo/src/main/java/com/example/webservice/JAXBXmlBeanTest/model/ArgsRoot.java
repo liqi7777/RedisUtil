@@ -1,9 +1,6 @@
 package com.example.webservice.JAXBXmlBeanTest.model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -13,6 +10,8 @@ import java.io.Serializable;
 @XmlType
 public class ArgsRoot extends Root implements Serializable {
 
+    @XmlAttribute(name = "name")
+    private String name;
     /**
      * serialVersionUID
      */
@@ -37,4 +36,16 @@ public class ArgsRoot extends Root implements Serializable {
         this.inspecMMe = inspecMMe;
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 }
