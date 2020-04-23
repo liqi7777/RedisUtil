@@ -53,6 +53,10 @@ public class UserTest {
         String[] split = "".split(",");
         System.out.println(split.length);
 
+        Calendar instance = Calendar.getInstance();
+        instance.add(Calendar.MONTH,1);
+        System.out.println( DateUtil.formatDate(instance.getTime()));
+
     }
 
 //    public static void testreturn() {
