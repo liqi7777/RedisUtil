@@ -80,7 +80,7 @@ public class NaturalMonthUtil {
 
 
     public static void main(String[] args) throws ParseException {
-        int i = calDiffMonth("2020-01-28", "2020-02-29");
+        int i = calDiffMonth("2020-02-01", "2020-05-13");
         System.out.println(i);
     }
 

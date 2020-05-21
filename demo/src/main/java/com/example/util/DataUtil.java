@@ -47,6 +47,11 @@ public class DataUtil {
         getfirstandlast();
 
         System.out.println(DateUtil.between(DateUtil.parseDate("2020-01-01"), DateUtil.parseDate("2020-04-01"), DateUnit.DAY));
+
+        Date date01=new Date(1588262400000L);
+        Date date02=new Date(1589040000000L);
+        long between = DateUtil.between(date01, date02, DateUnit.DAY);
+        System.out.println(between);
     }
 
 
@@ -156,6 +161,37 @@ public class DataUtil {
         System.out.println("当前日期字符串1：" + format.format(d));
         System.out.println("当前日期字符串2：" + year + "/" + month + "/" + day + " "
                 + hour + ":" + minute + ":" + second);
+
+    }
+
+
+    /**
+     * 获取两个日期之间的所有日期
+     *
+     * @param startTime 开始日期
+     * @param endTime   结束日期
+     * @return
+     */
+    public static List<String> getDays(String startTime, String endTime) {
+        // 返回的日期集合
+        List<String> days = new ArrayList<String>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date start = dateFormat.parse(startTime);
+            Date end = dateFormat.parse(endTime);
+            Calendar tempStart = Calendar.getInstance();
+            tempStart.setTime(start);
+            Calendar tempEnd = Calendar.getInstance();
+            tempEnd.setTime(end);
+            tempEnd.add(Calendar.DATE, +1);// 日期加1(包含结束)
+            while (tempStart.before(tempEnd)) {
+                days.add(dateFormat.format(tempStart.getTime()));
+                tempStart.add(Calendar.DAY_OF_YEAR, 1);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return days;
     }
 
 }

@@ -133,8 +133,8 @@ public class TimeIntervalUtils {
     }
 
     public static void main(String[] args) {
-        String nextTime = "2020-04-10 00:00:00";
-        String preTime = "2020-01-10 00:00:00";
+        String nextTime = "2020-05-14 00:00:00";
+        String preTime = "2020-02-01 00:00:00";
         String format = "yyyy-MM-dd hh:mm:ss";
 
         System.out.println("----------------------\n"
