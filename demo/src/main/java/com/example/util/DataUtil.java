@@ -5,6 +5,7 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import sun.applet.Main;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,10 +49,23 @@ public class DataUtil {
 
         System.out.println(DateUtil.between(DateUtil.parseDate("2020-01-01"), DateUtil.parseDate("2020-04-01"), DateUnit.DAY));
 
-        Date date01=new Date(1588262400000L);
-        Date date02=new Date(1589040000000L);
-        long between = DateUtil.between(date01, date02, DateUnit.DAY);
+        Date date01=new Date(1584201600000L);
+//        Date date02=new Date(1589040000000L);
+        long between = DateUtil.between(DateUtil.beginOfMonth(date01), date01, DateUnit.DAY);
         System.out.println(between);
+
+        boolean afterOrEquals = DateUtil.parse("2020年02月", "yyyy年MM月").isAfterOrEquals(DateUtil.parse("2020年03月", "yyyy年MM月"));
+        System.out.println(afterOrEquals);
+
+
+
+        double data=123.0034200;
+        BigDecimal bd=new BigDecimal(String.valueOf(data));
+        System.out.println("length = "+bd.scale());
+
+
+        System.out.println(BigDecimal.valueOf(2400.0).subtract(BigDecimal.valueOf(7.0)));
+
     }
 
 

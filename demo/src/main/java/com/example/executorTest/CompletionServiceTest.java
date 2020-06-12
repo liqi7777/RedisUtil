@@ -16,10 +16,10 @@ public class CompletionServiceTest {
 //        method1();
 
         //同步执行多个任务，一次性提交多个任务，并待且主线程同步等这些任务
-//        method2();
+        method2();
 
 
-        method3();
+//        method3();
 
 
     }
