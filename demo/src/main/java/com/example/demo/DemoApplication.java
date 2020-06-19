@@ -19,6 +19,7 @@ import org.springframework.retry.annotation.EnableRetry;
 @EnableCaching
 //启动类加@EnableEncrypt注解，开启加解密自动配置  monkey-api-encrypt
 //@EnableEncrypt
+
 public class DemoApplication {
 
 	public static void main(String[] args) {

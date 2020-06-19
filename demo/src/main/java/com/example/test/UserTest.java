@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.google.common.collect.Lists;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -95,6 +96,14 @@ public class UserTest {
 //        JSONObject.parseObject(json);
         System.out.println(json);
         System.out.println(Long.toOctalString(341226199603105552L));
+
+
+        String s="{\"meterReading\":1549420.0}";
+        Double meterReading = JSONObject.parseObject(s).getDouble("meterReading");
+        double v = new BigDecimal("0.001").multiply(new BigDecimal("1549420.0")).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        System.out.println(v);
+
+
     }
 
 //    public static void testreturn() {
