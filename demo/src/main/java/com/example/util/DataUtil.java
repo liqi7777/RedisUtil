@@ -20,51 +20,62 @@ import java.util.List;
  **/
 public class DataUtil {
 
-    public static void main(String[] args) {
-        List<String> nlist = new ArrayList<>();
-        Calendar c = Calendar.getInstance();
-        //2019-02-21 17:09:33  2020-02-21 17:09:33
-        c.setTime(DateUtil.parseDate("2020-02-01 00:00:00").toJdkDate());
-        Calendar c2 = Calendar.getInstance();
-        c2.setTime(DateUtil.parseDate("2020-02-01 00:00:00").toJdkDate());
-//            int num1 = Integer.parseInt(performance.getStartDate().substring(5,7));
-//            int num2 = Integer.parseInt(performance.getEndDate().substring(5,7));
-        while (c.before(c2)) {
-            nlist.add(DateUtil.format(c.getTime(), "yyyy年MM月"));
-            c.add(Calendar.MONTH, +1);
-        }
-        System.out.println(nlist.toString());
+    public static void main(String[] args) throws Exception {
+//        List<String> nlist = new ArrayList<>();
+//        Calendar c = Calendar.getInstance();
+//        //2019-02-21 17:09:33  2020-02-21 17:09:33
+//        c.setTime(DateUtil.parseDate("2020-02-01 00:00:00").toJdkDate());
+//        Calendar c2 = Calendar.getInstance();
+//        c2.setTime(DateUtil.parseDate("2020-02-01 00:00:00").toJdkDate());
+////            int num1 = Integer.parseInt(performance.getStartDate().substring(5,7));
+////            int num2 = Integer.parseInt(performance.getEndDate().substring(5,7));
+//        while (c.before(c2)) {
+//            nlist.add(DateUtil.format(c.getTime(), "yyyy年MM月"));
+//            c.add(Calendar.MONTH, +1);
+//        }
+//        System.out.println(nlist.toString());
+//
+//        System.out.println(new Date(1583717020000L).before(new java.util.Date()));
+//
+//        Integer i = 0;
+//        System.out.println(i.equals(0));
+//
+//        System.out.println(getMonthDiff(new Date(1579511757000L), new Date(1587460557132L)));
+//
+//
+//        System.out.println(getMonths("2020-01-01", "2020-04-01"));
+//
+//        getfirstandlast();
+//
+//        System.out.println(DateUtil.between(DateUtil.parseDate("2020-01-01"), DateUtil.parseDate("2020-04-01"), DateUnit.DAY));
+//
+//        Date date01=new Date(1584201600000L);
+////        Date date02=new Date(1589040000000L);
+//        long between = DateUtil.between(DateUtil.beginOfMonth(date01), date01, DateUnit.DAY);
+//        System.out.println(between);
+//
+//        boolean afterOrEquals = DateUtil.parse("2020年02月", "yyyy年MM月").isAfterOrEquals(DateUtil.parse("2020年03月", "yyyy年MM月"));
+//        System.out.println(afterOrEquals);
+//
+//
+//
+//        double data=123.0034200;
+//        BigDecimal bd=new BigDecimal(String.valueOf(data));
+//        System.out.println("length = "+bd.scale());
+//
+//
+//        System.out.println(BigDecimal.valueOf(2400.0).subtract(BigDecimal.valueOf(7.0)));
 
-        System.out.println(new Date(1583717020000L).before(new java.util.Date()));
 
-        Integer i = 0;
-        System.out.println(i.equals(0));
-
-        System.out.println(getMonthDiff(new Date(1579511757000L), new Date(1587460557132L)));
-
-
-        System.out.println(getMonths("2020-01-01", "2020-04-01"));
-
-        getfirstandlast();
-
-        System.out.println(DateUtil.between(DateUtil.parseDate("2020-01-01"), DateUtil.parseDate("2020-04-01"), DateUnit.DAY));
-
-        Date date01=new Date(1584201600000L);
-//        Date date02=new Date(1589040000000L);
-        long between = DateUtil.between(DateUtil.beginOfMonth(date01), date01, DateUnit.DAY);
-        System.out.println(between);
-
-        boolean afterOrEquals = DateUtil.parse("2020年02月", "yyyy年MM月").isAfterOrEquals(DateUtil.parse("2020年03月", "yyyy年MM月"));
-        System.out.println(afterOrEquals);
+//        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+//        Date nowTime = sdf.parse(sdf.format(new Date(1592577278000L)));
+//        Date beginTime = sdf.parse("21:00:00");
+//        Date endTime = sdf.parse("09:00:00");
+//        System.out.println(belongCalendar(nowTime, beginTime, endTime));
 
 
+        System.out.println(compareDate(new Date(),new Date(),0));
 
-        double data=123.0034200;
-        BigDecimal bd=new BigDecimal(String.valueOf(data));
-        System.out.println("length = "+bd.scale());
-
-
-        System.out.println(BigDecimal.valueOf(2400.0).subtract(BigDecimal.valueOf(7.0)));
 
     }
 
@@ -176,6 +187,8 @@ public class DataUtil {
         System.out.println("当前日期字符串2：" + year + "/" + month + "/" + day + " "
                 + hour + ":" + minute + ":" + second);
 
+
+
     }
 
 
@@ -206,6 +219,48 @@ public class DataUtil {
             e.printStackTrace();
         }
         return days;
+    }
+
+
+    public static boolean belongCalendar(Date nowTime, Date beginTime, Date endTime) {
+        Calendar date = Calendar.getInstance();
+        date.setTime(nowTime);
+        Calendar begin = Calendar.getInstance();
+        begin.setTime(beginTime);
+        Calendar end = Calendar.getInstance();
+        end.setTime(endTime);
+
+        if (end.getTimeInMillis() < begin.getTimeInMillis()) {
+            end.add(Calendar.DATE, 1);
+        }
+        if (date.getTimeInMillis() < begin.getTimeInMillis() && date.getTimeInMillis() < end.getTimeInMillis()) {
+            date.add(Calendar.DATE, 1);
+        }
+        if (date.after(begin) && date.before(end)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public static boolean compareDate(Date time1, Date time2, Integer day) {
+        long time = 1000 * 3600 * 24;//一天的时间(秒)
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date parse1 = null;
+        Date parse2 = null;
+        try {
+            parse1 = dateFormat.parse(dateFormat.format(time1));
+            parse2 = dateFormat.parse(dateFormat.format(time2));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long l = parse1.getTime() - parse2.getTime();
+        if (day != null) {
+            return (0 < l && l <= day * time);
+        } else {
+            return l < 0;
+        }
     }
 
 }

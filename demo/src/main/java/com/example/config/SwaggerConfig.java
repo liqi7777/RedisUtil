@@ -42,7 +42,7 @@ public class SwaggerConfig {
                 .select()
 //                .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
                 //swagger2添加多个扫描包
-                .apis(basePackage("com.example.controller" + splitor + "com.example.redis.cacheredis"))
+                .apis(basePackage("com.example.controller" + splitor + "com.example.redis.cacheredis" + splitor + "com.example.easyexceltest.financeExcelTest"))
                 .paths(PathSelectors.any())
                 .build().globalOperationParameters(pars).enable(true);
     }
