@@ -1,8 +1,15 @@
 package com.example.test;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import net.bytebuddy.asm.Advice;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
 
 /**
@@ -12,9 +19,26 @@ import java.math.BigDecimal;
  **/
 @Data
 @Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@XmlRootElement
 public class User implements Cloneable {
     private String username;
-    private int money;
+    private Integer money;
     private BigDecimal bigDecimal;
 
+
+    public void incrMoney() {
+        ++money;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", money=" + money +
+                ", bigDecimal=" + bigDecimal +
+                '}';
+    }
 }

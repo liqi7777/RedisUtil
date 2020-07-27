@@ -27,7 +27,7 @@ public class GuavaCacheTest {
                 //是否需要统计缓存情况,该操作消耗一定的性能,生产环境应该去除
                 .recordStats()
                 //设置写缓存后n秒钟后过期
-                .expireAfterWrite(17, TimeUnit.SECONDS)
+                .expireAfterWrite(5, TimeUnit.SECONDS)
                 //设置读写缓存后n秒钟过期,实际很少用到,类似于expireAfterWrite
                 //.expireAfterAccess(17, TimeUnit.SECONDS)
                 //只阻塞当前数据加载线程，其他线程返回旧值

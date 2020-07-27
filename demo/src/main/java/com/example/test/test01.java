@@ -1,32 +1,20 @@
 package com.example.test;
 
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.lang.UUID;
-import cn.hutool.core.text.csv.CsvUtil;
-import cn.hutool.core.text.csv.CsvWriter;
-import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Lists;
-import net.sf.cglib.beans.BeanCopier;
-import org.apache.commons.lang3.RandomStringUtils;
+import com.example.util.PageBean;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.commons.lang3.time.DateUtils;
-import org.hibernate.validator.constraints.ModCheck;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.data.redis.core.types.Expiration;
 
-import javax.swing.text.html.Option;
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.StringWriter;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.*;
-import java.util.function.DoubleToIntFunction;
-import java.util.stream.Collectors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Sky
@@ -36,79 +24,103 @@ import java.util.stream.Collectors;
 
 public class test01 {
     public static void main(String[] args) {
-////        System.out.println(Optional.of(null));
-////        BigDecimal currentReading = new BigDecimal("00017326").divide(BigDecimal.valueOf(100), 2, BigDecimal.ROUND_HALF_UP);
-////        System.out.println();
-////        System.out.println(currentReading);
-//        String data = "8.00m³";
-//        if (StringUtils.isNotBlank(data) && data.contains("m³")) {
-//            String s = data.split("m³")[0];
-//            System.out.println(s);
-//        }
-//        System.out.println(java.util.UUID.randomUUID().toString().replaceAll("-", ""));
-//
-//        List<Integer> userids01 = new ArrayList<>();
-//        userids01.add(6);
-//        List<Integer> userids02 = new ArrayList<>();
-//        userids02.add(1);
-//        userids02.add(2);
-//        userids02.addAll(userids01);
-////        userids01.addAll(userids02);
-//        System.out.println(userids02);
-//        List<Integer> list = Arrays.asList(1, 2, 3, 4);
-//        Double result = list.stream().collect(Collectors.collectingAndThen(Collectors.averagingLong(v -> v * 2),
-//                s -> s * s));
-//        System.out.println(result);
-//
-//        Date date = new Date(1566638298000L);
-//        String format = DateFormatUtils.format(date, "yyyy-MM-dd 00:00:00");
-//        System.out.println(format);
-//        String format1 = DateFormatUtils.format(date, "yyyy-MM-dd 23:59:59");
-//        System.out.println(format1);
-//
-//        Date date1 = DateUtils.addMonths(new Date(), -1);
-//        System.out.println(date1);
-//
-//        Long l=30_000L;
-//        System.out.println(l);
-//
-//        System.out.println("8737b92b0b9e68a07bcd1f895637df4a".length());
+//        List<String> Stringlists = new ArrayList<>();
+//        Stringlists.add("a");
+//        Stringlists.add("b");
+//        Stringlists.add("c");
+//        PageBean<String> pageBean = PageBean.generatePageBean(Stringlists, 1, 2);
+//        System.out.println(JSONObject.toJSONString(pageBean));
+//        List<Integer> integerList = new ArrayList<>();
+////        integerList.add(1);
+////        integerList.add(2);
+////        integerList.add(3);
+////        integerList.add(4);
+////        integerList.add(5);
+//        PageBean<Integer> integerPageBean = PageBean.generatePageBean(integerList, 1, 2);
+//        System.out.println(JSONObject.toJSONString(integerPageBean));
+//        Double a1 =0.0;
+//        System.out.println(a1.equals(0.0));
+//        String haha="0";
+//        System.out.println(haha.equals(0));
 
-//        String encodeString = "李";
-//        try {
-//            byte[] bytes = encodeString.getBytes("utf-8");
-//            for (byte aByte : bytes) {
-//                System.out.println(aByte);
-//            }
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-
-
-       String  htjsonstr = "{\n" +
-                "        \"khh\":\"江苏银行\",\n" +
-                "        \"jzyhzh\":\"18320188000337289\",\n" +
-                "        \"fkzq\":3,\n" +
-                "        \"htqdsj\":\"2020-01-09\",\n" +
-                "        \"zljzsj\":\"2020-02-08\",\n" +
-                "        \"fwcode\":\"413700\",\n" +
-                "        \"qyhtbh\":\"ZKZLHT202001090004\",\n" +
-                "        \"fkfs\":3,\n" +
-                "        \"zjje\":1000,\n" +
-                "        \"jzfs\":2,\n" +
-                "        \"zzjje\":1000,\n" +
-                "        \"yjje\":1000,\n" +
-                "        \"htqddd\":\"杭州拱墅和睦西湖路1号\",\n" +
-                "        \"zlqssj\":\"2020-01-09\"\n" +
-                "    }";
-        JSONObject jsonObject = JSONObject.parseObject(htjsonstr);
-        System.out.println(jsonObject.toJSONString());
-
+        Long a2=48093L;
+        System.out.println(a2==48093);
+//        int i = new Double("20.52").intValue();
+//        System.out.println(i);
+////        DateTime yesterday = DateUtil.yesterday();
+////        DateUtil.now();
+//        DateTime yyyyMM = DateUtil.parse("201902", "yyyyMM");
+//        DateTime dateTime = DateUtil.beginOfMonth(yyyyMM);
+//        DateTime dateTime1 = DateUtil.endOfMonth(yyyyMM);
+//        System.out.println(dateTime.toString());
+//        System.out.println(dateTime1.toString());
+////        System.out.println(yyyyMM.getTime());
+////        long between = DateUtil.between(dateTime, dateTime1, DateUnit.SECOND);
+////        System.out.println(between);
+////
+////        User user = new User();
+////        user.setUsername("liqi");
+////        user.setMoney(20);
+////        System.out.println(user.toString());
+////
+////        System.out.println(DateUtil.beginOfDay(DateUtil.parse("20200228", "yyyyMMdd")).toString());
+////        System.out.println(DateUtil.endOfDay(DateUtil.parse("20200228", "yyyyMMdd")).toString());
+////
+////        System.out.println(DateUtil.formatDate(new Date()));
+////
+////
+////        BigDecimal totalFeeAmt = new BigDecimal("0.0001").multiply(new BigDecimal("26")).multiply(new BigDecimal(247500)).setScale(0, BigDecimal.ROUND_HALF_UP);
+////        System.out.println(totalFeeAmt.toString());
+////
+////        System.out.println(Double.valueOf("2425.25"));
+////        System.out.println(Double.parseDouble("12.13") + 6.305);
+////        double d = Double.valueOf("2425") - Double.parseDouble("12.13") + 6.305;
+////        System.out.println(d);
+////
+////        double v = Double.parseDouble("2421.01") * Double.parseDouble("0.26") / 100;
+////        System.out.println(v);
+//
+//        System.out.println("3fa0cce45cff1f81b1f49fe29bcb7822".length());
+//        String s="{\"meterReading\":0.322}";
+//        double d =JSONObject.parseObject("{\"meterReading\":0.322}").getDouble("meterReading");
+//        System.out.println(d);
+//        Double d1=0.322;
+//        Double d2=0.3;
+//        System.out.println(d1.compareTo(d2));
+//        String stackTrace = Thread.currentThread().getStackTrace()[1].getMethodName();
+//
+//        System.out.println(Thread.currentThread().getStackTrace());
+//
+//        System.out.println(Expiration.from(5L, TimeUnit.SECONDS).getExpirationTimeInMilliseconds());
+//
+//        System.out.println(StringUtils.isBlank(""));
+//        System.out.println(DateUtil.parseDate("2020-02-28 23:59:59").toJdkDate().getTime());
+        System.out.println(UUID.randomUUID().toString().replaceAll("-",""));
+        System.out.println(jaxbObjectToXML(new User().setUsername("liqi").setBigDecimal(BigDecimal.valueOf(0.0))));
     }
 
     private static int sayhello() throws Exception {
         int i = 1;
         int j = i / 0;
         return j;
+    }
+
+    private static String jaxbObjectToXML(User customer) {
+        String xmlString = "";
+        try {
+            JAXBContext context = JAXBContext.newInstance(User.class);
+            Marshaller m = context.createMarshaller();
+
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); // To format XML
+
+            StringWriter sw = new StringWriter();
+            m.marshal(customer, sw);
+            xmlString = sw.toString();
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+        return xmlString;
     }
 }

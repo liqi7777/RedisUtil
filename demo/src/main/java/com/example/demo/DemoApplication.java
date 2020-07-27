@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.cxytiandi.encrypt.springboot.annotation.EnableEncrypt;
 import com.example.applicationListener.MyEvent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +17,9 @@ import org.springframework.retry.annotation.EnableRetry;
 @EnableRetry
 //开启基于注解的缓存
 @EnableCaching
+//启动类加@EnableEncrypt注解，开启加解密自动配置  monkey-api-encrypt
+//@EnableEncrypt
+
 public class DemoApplication {
 
 	public static void main(String[] args) {

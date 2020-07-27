@@ -44,6 +44,21 @@ public class UserController {
         return "删除成功";
     }
 
+
+    /**
+     * 添加一条保存的数据到缓存，缓存的key是当前user的id
+     *
+     * @param user
+     * @return
+     */
+    @PostMapping("/saveUserInner")
+    @Cacheable(value = "userCache", key = "#user.testToString() +''")
+    public User saveUserInner(User user) {
+        return saveUser(user);
+    }
+
+
+
     /**
      * 添加一条保存的数据到缓存，缓存的key是当前user的id
      *
@@ -51,7 +66,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/saveUser")
-    @CachePut(value = "userCache", key = "#result.userId +''")
+    @Cacheable(value = "userCache", key = "#root.methodName+#user.testToString() +''")
     public User saveUser(User user) {
         return user;
     }

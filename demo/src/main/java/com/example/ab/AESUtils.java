@@ -134,7 +134,7 @@ public class AESUtils {
 //        String encrypt = encrypt(content, KEY);
 //        System.out.println("加密后：" + encrypt);
         System.out.println( encrypt("!sIk%H!gDq1NbhlE",null));
-        System.out.println(decrypt("6A0840A6D6B590BEAB47EEC4EA2EA797CE51022DA840BE0428D156AAB8AE517F",null));
+        System.out.println(decrypt("B9C0181C8D61A4FD9059EB12F62AAE89",null));
 //        System.out.println("7386072b1f94fdd7acaae83cd0f0f1c1".length());
 //        System.out.println("E88158AFC0255F83E48075AAE641478287A194811E8000A7EE8DA85FECDE4B47".length());
     }

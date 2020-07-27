@@ -1,5 +1,8 @@
 package com.example.loadclass;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
 /**
  * @author Sky
  * create 2019/11/18
@@ -23,7 +26,7 @@ public class OuterClass
 
     class InnerClass
     {
-        //private static String te = "";
+//        private static String te = "";
 //        static{
 //            System.out.println("InnerClass static load.");
 //        }
@@ -50,12 +53,13 @@ public class OuterClass
 
     public static void main(String[] args)
     {
-        System.out.println("Begin");
-        OuterClass.InnerStaticClass.load();
-        // 静态内部类无需外部类实例即可调用
-        OuterClass out = OuterClass.InnerStaticClass.out;
-        OuterClass.InnerClass innerClass = out.new InnerClass();
+//        System.out.println("Begin");
+//        OuterClass.InnerStaticClass.load();
+//        // 静态内部类无需外部类实例即可调用
+//        OuterClass out = OuterClass.InnerStaticClass.out;
+//        OuterClass.InnerClass innerClass = out.new InnerClass();
         // 非静态内部类需要外部类实例调用
+
     }
 
 }

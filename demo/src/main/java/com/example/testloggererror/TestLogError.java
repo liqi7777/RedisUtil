@@ -32,7 +32,7 @@ public class TestLogError {
             // 尝试使用分隔符,第二个参数为Throwable,会发现分隔符没有起作用，第二个参数的不同据，调用不同的重载方法
             LOGGER.error("第二个参数为Throwable，使用分隔符打印 {} : {} ", 1, e);
             // 尝试使用分隔符，第二个参数为Object,会发现分隔符起作用了，根据第二个参数的不同类型，调用不同的重载方法
-//            LOGGER.error("第二个参数为Object，使用分隔符打印 {} ", 123);
+            LOGGER.error("第二个参数为Object，使用分隔符打印 {} ", e);
         }
     }
 }

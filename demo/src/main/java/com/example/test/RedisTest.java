@@ -60,9 +60,10 @@ public class RedisTest {
 //        builder.append(s!=null?s:"");
 //        System.out.println(builder.toString());
 //
-//        Integer i=3;
+        Integer i=3;
 //        System.out.println(i.equals(3));
 //        System.out.println("   ".equals(""));
+        System.out.println(48093L!=48093);
 
         test02();
     }
@@ -71,6 +72,5 @@ public class RedisTest {
         List<String> ids = new ArrayList<>();
         ids.add("liqi");
         List<Person> persons = new ArrayList<>();
-
     }
 }
