@@ -48,11 +48,19 @@ public class UserTest {
         System.out.println(expiredDateTime);
 
         System.out.println("\n" +
-                "{\\x22dataRequestBodyVO\\x22:{\\x22dt\\x22:{\\x22dataType\\x22:\\x224\\x22,\\x22factoryType\\x22:\\x22YD\\x22,\\x22houseCatalog\\x22:\\x220\\x22,\\x22roomId\\x22:\\x22958965\\x22,\\x22thirdHomeId\\x22:\\x225da55b74df6ab962431a6d3a\\x22,\\x22thirdRoomId\\x22:\\x225da55b75755c3e61f963d734\\x22,\\x22type\\x22:\\x220\\x22,\\x22userId\\x22:\\x2244270\\x22,\\x22uuid\\x22:\\x22null,89e9b5849184293ea6583cadec6ac11d,39a1ae3c6fad23f0f9ee258c2deb6058\\x22}},\\x22headerRequestDataVO\\x22:{\\x22bid\\x22:\\x22b001\\x22,\\x22cid\\x22:\\x22c1234\\x22,\\x22crt\\x22:\\x2220150102:040506\\x22,\\x22enc\\x22:\\x221.2.3\\x22,\\x22pid\\x22:\\x22validate_token\\x22,\\x22pvr\\x22:\\x221.0\\x22,\\x22rnd\\x22:\\x22s002\\x22,\\x22tkn\\x22:\\x22XXXXXX\\x22,\\x22utk\\x22:\\x22ABC\\x22,\\x22ver\\x22:\\x221.1.1\\x22}}".replaceAll("x22","").replaceAll("\\\\",""));
+                "{\\x22dataRequestBodyVO\\x22:{\\x22dt\\x22:{\\x22dataType\\x22:\\x224\\x22,\\x22factoryType\\x22:\\x22YD\\x22,\\x22houseCatalog\\x22:\\x220\\x22,\\x22roomId\\x22:\\x22958965\\x22,\\x22thirdHomeId\\x22:\\x225da55b74df6ab962431a6d3a\\x22,\\x22thirdRoomId\\x22:\\x225da55b75755c3e61f963d734\\x22,\\x22type\\x22:\\x220\\x22,\\x22userId\\x22:\\x2244270\\x22,\\x22uuid\\x22:\\x22null,89e9b5849184293ea6583cadec6ac11d,39a1ae3c6fad23f0f9ee258c2deb6058\\x22}},\\x22headerRequestDataVO\\x22:{\\x22bid\\x22:\\x22b001\\x22,\\x22cid\\x22:\\x22c1234\\x22,\\x22crt\\x22:\\x2220150102:040506\\x22,\\x22enc\\x22:\\x221.2.3\\x22,\\x22pid\\x22:\\x22validate_token\\x22,\\x22pvr\\x22:\\x221.0\\x22,\\x22rnd\\x22:\\x22s002\\x22,\\x22tkn\\x22:\\x22XXXXXX\\x22,\\x22utk\\x22:\\x22ABC\\x22,\\x22ver\\x22:\\x221.1.1\\x22}}".replaceAll("x22", "").replaceAll("\\\\", ""));
 
         String[] split = "".split(",");
         System.out.println(split.length);
+        System.out.println(isSameMonth(new Date(),new Date(1580969264000L)));
 
+        System.out.println(new Date().before(new Date(1580969264000L)));
+
+
+        String s = "02 1-38704537 ".replaceAll("-", "").replaceAll(" ","");
+        Long aLong = Long.valueOf(s);
+        System.out.println(aLong);
+        System.out.println(s);
     }
 
 //    public static void testreturn() {
@@ -61,5 +69,26 @@ public class UserTest {
 //        }
 //        System.out.println("hahahah");
 //    }
+
+
+    public static boolean isSameMonth(Date date1, Date date2) {
+        if(date1 != null && date2 != null) {
+            Calendar cal1 = Calendar.getInstance();
+            cal1.setTime(date1);
+            Calendar cal2 = Calendar.getInstance();
+            cal2.setTime(date2);
+            return isSameMonth(cal1, cal2);
+        } else {
+            throw new IllegalArgumentException("The date must not be null");
+        }
+    }
+
+    public static boolean isSameMonth(Calendar cal1, Calendar cal2) {
+        if(cal1 != null && cal2 != null) {
+            return cal1.get(0) == cal2.get(0) && cal1.get(1) == cal2.get(1) && cal1.get(2) == cal2.get(2);
+        } else {
+            throw new IllegalArgumentException("The date must not be null");
+        }
+    }
 
 }
