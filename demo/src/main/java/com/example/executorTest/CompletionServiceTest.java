@@ -35,6 +35,7 @@ public class CompletionServiceTest {
             return "hello";
         });
         String s = helloFuture.get();
+        helloFuture.get();
         System.out.println(s);
         System.out.println("是否等待完成");
     }

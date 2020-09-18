@@ -5,9 +5,9 @@ server:
 spring:
     datasource:
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://127.0.0.1:3306/freeter?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
-        username: root
-        password: root
+        url: jdbc:mysql://127.0.0.1:3307?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false
+        username: xiaoshuidi
+        password: xiaoshuidi
     thymeleaf:
       cache: false
     profiles:

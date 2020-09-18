@@ -21,12 +21,13 @@ class A{
         System.out.println("执行了父类A的静态代码块");
     }
 
-    {
-        System.out.println("执行了父类A的非静态代码块");
-    }
 
     public A(){
         System.out.println("执行了父类A的构造方法");
+    }
+
+    {
+        System.out.println("执行了父类A的非静态代码块");
     }
 }
 

@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import com.cxytiandi.encrypt.springboot.annotation.EnableEncrypt;
 import com.example.applicationListener.MyEvent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

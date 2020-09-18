@@ -82,6 +82,8 @@ public class NaturalMonthUtil {
     public static void main(String[] args) throws ParseException {
         int i = calDiffMonth("2020-02-01", "2020-05-13");
         System.out.println(i);
+
+        System.out.println(getDaysOfMonth(2020,7));
     }
 
 }

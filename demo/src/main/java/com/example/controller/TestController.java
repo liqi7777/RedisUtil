@@ -25,17 +25,19 @@ import java.util.concurrent.TimeUnit;
 public class TestController {
 
     @GetMapping(value = "test")
-    public void test(HttpServletRequest request, HttpServletResponse response) {
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            System.out.println(cookie.getName() + "..." + cookie.getValue());
-        }
+    public String test(HttpServletRequest request, HttpServletResponse response) {
+//        Cookie[] cookies = request.getCookies();
+//        for (Cookie cookie : cookies) {
+//            System.out.println(cookie.getName() + "..." + cookie.getValue());
+//        }
         //HttpServletResponse添加cooike
         Cookie cookie1 = new Cookie("cookie1", "测试cookie1");
         Cookie cookie2 = new Cookie("cookie2", "测试cookie2");
         response.addCookie(cookie1);
         response.addCookie(cookie2);
         System.out.println("hahah");
+        new Cookie("cookie3", "测试cookie3");
+        return "hahaliqi2010000";
     }
 
     /**
