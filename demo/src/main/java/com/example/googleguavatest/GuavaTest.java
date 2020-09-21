@@ -2,8 +2,12 @@ package com.example.googleguavatest;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,5 +41,13 @@ public class GuavaTest {
         for (String it2 : ret.keySet()) {
             System.out.println(it2 + " -> " + ret.get(it2));
         }
+
+        Collections.synchronizedList(new ArrayList<>());
+
+        ArrayList<String> list = Lists.newArrayList("a", "b", "c");
+
+
+
+
     }
 }
