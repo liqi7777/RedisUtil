@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sound.midi.Soundbank;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -129,5 +132,15 @@ public class TestController {
     public String requestbodymap(@RequestBody Map<String, Object> map) {
         System.out.println(map.get("name"));
         return "hello";
+    }
+
+
+    @GetMapping("/test/listtest")
+    public String testlist(
+            @RequestParam(value = "id") String id,
+            @RequestParam(value = "ids", required = false) List<String> ids) {
+        System.out.println(id);
+        Optional.ofNullable(ids).ifPresent(strings -> System.out.println(strings.toString()));
+        return "listtest";
     }
 }
