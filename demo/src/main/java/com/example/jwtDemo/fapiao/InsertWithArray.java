@@ -3,6 +3,7 @@ package com.example.jwtDemo.fapiao;
 /**
  *
  */
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.GsonBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -45,7 +46,7 @@ public class InsertWithArray {
     private static String DOMAIN = "https://yesfp.yonyoucloud.com";
     private static String URL = DOMAIN + "/invoiceclient-web/api/invoiceApply/insertWithArray?appid=" + APPID;
     //pro22.pfx为测试环境通讯证书，正式环境需要替换成正式的
-    private static String KEYPATH = "src/main/resources/certificate/pro22.pfx";
+    private static String KEYPATH = "/Users/liqi/IdeaProjects/RedisUtil/demo/src/main/resources/certificate/pro22.pfx";
     //证书密码
     private static String PASSWORD = "password";
 
@@ -90,8 +91,11 @@ public class InsertWithArray {
         HttpPost httpPost = new HttpPost(URL);
         // 构造POST表单Map
         Map<String, String> paramsMap = buildPostParam();
+        System.out.println("构造POST表单Map:"+ JSONObject.toJSONString(paramsMap));
         // 签名
         String sign = this.sign(paramsMap);
+        System.out.println("sign:"+ sign);
+
         httpPost.addHeader("sign", sign);
         // 转换POST表单参数
         List<NameValuePair> list = new ArrayList<NameValuePair>();
@@ -133,6 +137,7 @@ public class InsertWithArray {
         // 此签名数据必须存在，否则在验证签名时会不通过。
         String value = paramsMap.get("requestdatas");
         claims.put("requestdatas", getMD5(value));
+        System.out.println("claims打印："+JSONObject.toJSONString(claims));
         // 使用jdk1.6版本时，删除下面代码的中.compressWith(CompressionCodecs.DEFLATE)
         String compactJws = Jwts.builder().signWith(SignatureAlgorithm.RS512, privateKey)
                 .setClaims(claims).compressWith(CompressionCodecs.DEFLATE).compact();
@@ -282,7 +287,7 @@ public class InsertWithArray {
         data.put("GMF_DZDH", "购买方地址电话");
         //组织编码，测试环境请一定使用测试环境的组织编码
         data.put("ORGCODE", "20160914001");
-        data.put("JSHJ", 1395.00);
+        data.put("JSHJ", 117);
         data.put("items", buildItems());
         datas.add(data);
         GsonBuilder builder = new GsonBuilder();
@@ -296,12 +301,12 @@ public class InsertWithArray {
     private List<Object> buildItems() {
         List<Object> items = new ArrayList<>();
         Map<String, Object> data = new HashMap<>();
-        data.put("XMJSHJ", "1395.00");
-        data.put("XMMC", "住宅物业管理费1");
+        data.put("XMJSHJ", "117");
+        data.put("XMMC", "项目名称");
         //税率16%需要写成0.16的格式
-        data.put("SL", 0.16);
+        data.put("SL", 0.17);
         //SPBM字段为商品税收分类编码，不同的商品会有不同的编码，不对应的话会影响报税，需要咨询下公司财务
-        data.put("SPBM", "3040502029902000000");
+        data.put("SPBM", "1010101020000000000");
         items.add(data);
         return items;
     }
@@ -312,6 +317,6 @@ public class InsertWithArray {
      * @return 发票请求流水号
      */
     private String buildFpqqlsh() {
-        return "164291i05h2080000sKs";
+        return "12345678901234567890";
     }
 }
