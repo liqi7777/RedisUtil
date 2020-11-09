@@ -2,6 +2,7 @@ package com.example.java8ActualCombat;
 
 import com.example.test.Test;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,7 @@ import static java.util.stream.Collectors.*;
  */
 public class java8StreamTest {
     public static void main(String[] args) {
-        List<Dish> menu = Arrays.asList(
+         List<Dish> menu = Arrays.asList(
                 new Dish("pork", false, 800, Dish.Type.MEAT),
                 new Dish("beef", false, 700, Dish.Type.MEAT),
                 new Dish("chicken", false, 400, Dish.Type.MEAT),

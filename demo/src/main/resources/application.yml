@@ -47,3 +47,14 @@ mybatis-plus:
 logging:
   level:
     com.example.mapper: debug
+
+
+# 测试 yml封装
+bcop:
+  quartz:
+    triggers:
+      fip:
+        - className: com.chinamobile.bcop.opconsolesharednetworktrafficpacket.job.FipBillDataCollectionJob
+          cronExpression: 0 12 * * * ?
+        - className: com.chinamobile.bcop.opconsolesharednetworktrafficpacket.job.FipBillDataMinusJob
+          cronExpression: 0 14 * * * ?

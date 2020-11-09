@@ -6,6 +6,8 @@ package com.example.dateCalendarTest;
  * email sky.li@ixiaoshuidi.com
  **/
 
+import cn.hutool.core.date.DateUnit;
+import cn.hutool.core.date.DateUtil;
 import org.apache.http.util.TextUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -133,8 +135,8 @@ public class TimeIntervalUtils {
     }
 
     public static void main(String[] args) {
-        String nextTime = "2020-05-14 00:00:00";
-        String preTime = "2020-02-01 00:00:00";
+        String nextTime = "2020-04-15 00:00:00";
+        String preTime = "2020-01-15 00:00:00";
         String format = "yyyy-MM-dd hh:mm:ss";
 
         System.out.println("----------------------\n"
@@ -142,5 +144,7 @@ public class TimeIntervalUtils {
                 + "preTime  = " + preTime + "\n"
                 + Arrays.toString(TimeIntervalUtils.getTimeIntervalArray(nextTime, preTime, format)) + "\n"
                 + "----------------------");
+
+        System.out.println(DateUtil.between(DateUtil.parseDateTime(preTime).toJdkDate(),DateUtil.parseDateTime(nextTime).toJdkDate(), DateUnit.DAY)+1);
     }
 }

@@ -15,6 +15,7 @@ import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * @author Sky
@@ -24,10 +25,17 @@ import java.util.concurrent.TimeUnit;
 
 public class test01 {
     public static void main(String[] args) {
-//        List<String> Stringlists = new ArrayList<>();
-//        Stringlists.add("a");
-//        Stringlists.add("b");
-//        Stringlists.add("c");
+        List<String> Stringlists = new ArrayList<>();
+        Stringlists.add("a");
+        Stringlists.add("b");
+        Stringlists.add("c");
+        List<String> a1 = Stringlists.stream().filter(s -> s.equals("a")).collect(Collectors.toList());
+        System.out.println(a1);
+
+        String he="aaa";
+        boolean contains = he.contains("");
+        System.out.println(contains);
+
 //        PageBean<String> pageBean = PageBean.generatePageBean(Stringlists, 1, 2);
 //        System.out.println(JSONObject.toJSONString(pageBean));
 //        List<Integer> integerList = new ArrayList<>();
@@ -49,14 +57,14 @@ public class test01 {
 //        System.out.println(i);
 ////        DateTime yesterday = DateUtil.yesterday();
 ////        DateUtil.now();
-//        DateTime yyyyMM = DateUtil.parse("201902", "yyyyMM");
-//        DateTime dateTime = DateUtil.beginOfMonth(yyyyMM);
-//        DateTime dateTime1 = DateUtil.endOfMonth(yyyyMM);
-//        System.out.println(dateTime.toString());
-//        System.out.println(dateTime1.toString());
-////        System.out.println(yyyyMM.getTime());
-////        long between = DateUtil.between(dateTime, dateTime1, DateUnit.SECOND);
-////        System.out.println(between);
+        DateTime yyyyMM = DateUtil.parse("202011", "yyyyMM");
+        DateTime dateTime = DateUtil.beginOfMonth(yyyyMM);
+        DateTime dateTime1 = DateUtil.endOfMonth(yyyyMM);
+        System.out.println(dateTime.toString());
+        System.out.println(dateTime1.toString());
+        System.out.println(yyyyMM.getTime());
+        long between = DateUtil.between(dateTime, dateTime1, DateUnit.DAY);
+        System.out.println(between);
 ////
 ////        User user = new User();
 ////        user.setUsername("liqi");
@@ -97,6 +105,16 @@ public class test01 {
 //        System.out.println(DateUtil.parseDate("2020-02-28 23:59:59").toJdkDate().getTime());
         System.out.println(UUID.randomUUID().toString().replaceAll("-",""));
         System.out.println(jaxbObjectToXML(new User().setUsername("liqi").setBigDecimal(BigDecimal.valueOf(0.0))));
+        int i=8;
+        System.out.println();
+        Double a= new Double(0);
+        int i1 = a.compareTo(0.0);
+        System.out.println(i1);
+//        String format = String.format("%1$0" + 16 + "d", 0);
+//        System.out.println(format);
+        Double d =100.0;
+        System.out.println(d.compareTo(new BigDecimal(100.0).doubleValue()));
+
     }
 
     private static int sayhello() throws Exception {
