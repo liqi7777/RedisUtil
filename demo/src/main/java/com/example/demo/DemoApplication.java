@@ -10,7 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.SpringVersion;
 import org.springframework.retry.annotation.EnableRetry;
+
+import javax.swing.*;
 
 /**
  * @readme 本项目的所有接口采用json 协议，为运营平台提供后台接口。
@@ -26,13 +29,12 @@ import org.springframework.retry.annotation.EnableRetry;
 public class DemoApplication {
 
 
-
-
-	public static void main(String[] args) {
-		ConfigurableApplicationContext applicationContext = SpringApplication.run(DemoApplication.class, args);
+    public static void main(String[] args) {
+        ConfigurableApplicationContext applicationContext = SpringApplication.run(DemoApplication.class, args);
 //		applicationContext.publishEvent(new MyEvent("测试事件"));
-		Object ymlListMapConfig = applicationContext.getBean("quartzConfig");
-		System.out.println("haha");
-	}
+        Object ymlListMapConfig = applicationContext.getBean("quartzConfig");
+        System.out.println("haha");
+        System.out.println("spring版本号：" + SpringVersion.getVersion());
+    }
 
 }
