@@ -1,5 +1,6 @@
 package com.example.java8ActualCombat;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.test.Test;
 
 import java.math.BigDecimal;
@@ -16,7 +17,7 @@ import static java.util.stream.Collectors.*;
  */
 public class java8StreamTest {
     public static void main(String[] args) {
-         List<Dish> menu = Arrays.asList(
+        List<Dish> menu = Arrays.asList(
                 new Dish("pork", false, 800, Dish.Type.MEAT),
                 new Dish("beef", false, 700, Dish.Type.MEAT),
                 new Dish("chicken", false, 400, Dish.Type.MEAT),
@@ -33,8 +34,18 @@ public class java8StreamTest {
 //        test03(menu);
 //        test04(menu);
 //        test05(menu);
-        test06(menu);
-        test07(menu);
+//        test06(menu);
+//        test07(menu);
+        test08(menu);
+    }
+
+    private static void test08(List<Dish> menu) {
+        Map<Dish.Type, ArrayList<Dish>> map = menu.stream().collect(groupingBy(Dish::getType,
+                collectingAndThen
+                        (toCollection(() -> new TreeSet<Dish>(Comparator.comparing(Dish::getCalories))), ArrayList::new)));
+
+        System.out.println(JSONObject.toJSONString(map));
+
     }
 
 
@@ -111,9 +122,6 @@ public class java8StreamTest {
                                 groupingBy(Dish::getType)));
         System.out.println(vegetarianDishesByType);
     }
-
-
-
 
 
 }
