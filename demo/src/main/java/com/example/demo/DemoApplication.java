@@ -1,19 +1,12 @@
 package com.example.demo;
 
-import com.alibaba.fastjson.JSONObject;
-import com.example.applicationListener.MyEvent;
-import com.example.config.ymlListMapConfig.YmlListMapConfig;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.SpringVersion;
 import org.springframework.retry.annotation.EnableRetry;
-
-import javax.swing.*;
 
 /**
  * @readme 本项目的所有接口采用json 协议，为运营平台提供后台接口。
@@ -35,6 +28,8 @@ public class DemoApplication {
         Object ymlListMapConfig = applicationContext.getBean("quartzConfig");
         System.out.println("haha");
         System.out.println("spring版本号：" + SpringVersion.getVersion());
+        System.out.println(Runtime.
+                getRuntime().availableProcessors());
     }
 
 }

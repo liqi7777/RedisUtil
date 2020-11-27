@@ -115,6 +115,15 @@ public class test01 {
         Double d =100.0;
         System.out.println(d.compareTo(new BigDecimal(100.0).doubleValue()));
 
+        BigDecimal one =new BigDecimal("0");
+        BigDecimal two =new BigDecimal("0");
+        BigDecimal three=BigDecimal.ZERO;
+        System.out.println(one.equals(three));
+
+        String s1="11";
+        String s2="0";
+        System.out.println(s1.compareTo(s2));
+
     }
 
     private static int sayhello() throws Exception {
