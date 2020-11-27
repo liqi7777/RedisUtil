@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,6 +25,16 @@ public class RedirectRest {
 
     @GetMapping(path = "r1")
     public String r1() {
-        return "redirect:/redirect/index?base=r1";
+        return    "redirect:/redirect/index?base=r1";
+//        return  "redirect:http://www.shuidiguanjia.com";
     }
+
+    @GetMapping(path = "r2")
+    public String r2(RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("name","liqi");
+        return    "redirect:/redirect/index?base=r1";
+//        return  "redirect:http://www.shuidiguanjia.com";
+    }
+
+
 }
