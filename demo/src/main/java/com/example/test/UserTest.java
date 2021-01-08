@@ -1,21 +1,12 @@
 package com.example.test;
 
 import cn.hutool.core.date.DateUtil;
-import com.alibaba.fastjson.JSONObject;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeanUtils;
-import sun.util.resources.cldr.rm.CalendarData_rm_CH;
 
 import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author Sky
@@ -61,6 +52,12 @@ public class UserTest {
         Long aLong = Long.valueOf(s);
         System.out.println(aLong);
         System.out.println(s);
+        byte[] bytes = "skip".getBytes();
+        for (byte aByte : bytes) {
+            String tString = Integer.toBinaryString((aByte & 0xFF) + 0x100).substring(1);
+            System.out.println("tString:" + tString);
+        }
+
     }
 
 //    public static void testreturn() {
