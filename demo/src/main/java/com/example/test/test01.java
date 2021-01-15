@@ -58,8 +58,8 @@ public class test01 {
 ////        DateTime yesterday = DateUtil.yesterday();
 ////        DateUtil.now();
         DateTime yyyyMM = DateUtil.parse("202011", "yyyyMM");
-        DateTime dateTime = DateUtil.beginOfMonth(yyyyMM);
-        DateTime dateTime1 = DateUtil.endOfMonth(yyyyMM);
+        DateTime dateTime = DateUtil.beginOfDay(yyyyMM);
+        DateTime dateTime1 = DateUtil.endOfDay(yyyyMM);
         System.out.println(dateTime.toString());
         System.out.println(dateTime1.toString());
         System.out.println(yyyyMM.getTime());
