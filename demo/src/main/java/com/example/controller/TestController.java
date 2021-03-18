@@ -21,7 +21,6 @@ import java.util.concurrent.TimeUnit;
  * @author Sky
  * create 2018/10/31
  * email sky.li@ixiaoshuidi.com
- *
  **/
 @RestController
 public class TestController {
