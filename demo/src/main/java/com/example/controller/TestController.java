@@ -5,13 +5,11 @@ import com.example.test.HttpClientUtil;
 import com.example.test.RandomValidateCodeUtil;
 import com.example.test.User;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sound.midi.Soundbank;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -23,6 +21,7 @@ import java.util.concurrent.TimeUnit;
  * @author Sky
  * create 2018/10/31
  * email sky.li@ixiaoshuidi.com
+ *
  **/
 @RestController
 public class TestController {
