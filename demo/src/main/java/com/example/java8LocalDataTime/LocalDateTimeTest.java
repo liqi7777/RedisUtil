@@ -30,7 +30,6 @@ public class LocalDateTimeTest {
         assertEquals(10, fromUnits.getDays());
         assertEquals(10, fromUnits.getMonths());
         assertEquals(3,fromUnits.getYears());
-
         Period fromDays = Period.ofDays(50);
         Period fromMonths = Period.ofMonths(5);
         Period fromYears = Period.ofYears(10);

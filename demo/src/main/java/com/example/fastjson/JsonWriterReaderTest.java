@@ -38,7 +38,7 @@ public class JsonWriterReaderTest {
     private static void writeTest() throws IOException {
         JSONWriter writer = new JSONWriter(new FileWriter("/tmp/huge.json"));
         writer.startArray();
-        for (int i = 0; i < 1000 * 1000; ++i) {
+        for (int i = 0; i < 1000 * 10000; ++i) {
             writer.writeValue(new StateInRentFeeBO_v2());
         }
         writer.endArray();
