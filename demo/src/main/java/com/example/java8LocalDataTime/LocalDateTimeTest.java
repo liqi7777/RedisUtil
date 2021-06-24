@@ -1,9 +1,8 @@
 package com.example.java8LocalDataTime;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 
@@ -35,6 +34,12 @@ public class LocalDateTimeTest {
         Period fromYears = Period.ofYears(10);
         Period fromWeeks = Period.ofWeeks(40);
         assertEquals(280, fromWeeks.getDays());
+
+
+        LocalDateTime dateTime =LocalDateTime.ofEpochSecond(System.currentTimeMillis()/1000,0, ZoneOffset.ofHours(8));
+        String format = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println(format);
+
     }
 
     private static void method01() {
